@@ -49,10 +49,10 @@ nosetests.xml
 coverage.xml
 
 # pyenv #
-# .python-version 
+# .python-version
 
 # SageMath parsed files #
-*.sage.py 
+*.sage.py
 
 # Environments #
 .env*
