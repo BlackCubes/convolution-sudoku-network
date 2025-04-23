@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 pre-commit = "*"
+fastapi = {extras = ["standard"], version = "*"}
 
 [dev-packages]
 
