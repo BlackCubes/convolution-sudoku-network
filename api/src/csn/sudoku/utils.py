@@ -29,6 +29,7 @@ class SudokuAlgo:
                 board[row][col] = num
 
                 if self.__solve_sudoku(board, row, col + 1):
+                    print(row, col, num)
                     return True
 
                 board[row][col] = 0
