@@ -17,6 +17,7 @@ class SudokuAlgo:
 
         self.__solve_sudoku(board, 0, 0)
 
+    def get_solution(self):
         return self.solution
 
     def __solve_sudoku(self, board, row, col):
