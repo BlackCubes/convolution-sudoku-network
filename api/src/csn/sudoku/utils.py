@@ -6,12 +6,18 @@ class SudokuAlgo:
     Contains the logic for solving a sudoku puzzle.
     """
 
+    def __init__(self):
+        self.solution = {"steps": []}
+
     def solve(self, board):
         """
         Solve the sudoku puzzle.
         """
+        self.solution = {"steps": []}
 
         self.__solve_sudoku(board, 0, 0)
+
+        return self.solution
 
     def __solve_sudoku(self, board, row, col):
         if row == 8 and col == 9:
@@ -29,7 +35,7 @@ class SudokuAlgo:
                 board[row][col] = num
 
                 if self.__solve_sudoku(board, row, col + 1):
-                    print(row, col, num)
+                    self.solution["steps"].append((row, col, num))
                     return True
 
                 board[row][col] = 0
