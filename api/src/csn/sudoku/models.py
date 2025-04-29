@@ -1,11 +1,13 @@
 from datetime import datetime
 
+from pydantic import BaseModel
 
-class Base:
+
+class DateTimeBase:
     created_at: datetime
     updated_at: datetime
 
 
-class SudokuExample(Base):
+class SudokuExample(BaseModel, DateTimeBase):
     steps: list[list[int]]
     length: int
