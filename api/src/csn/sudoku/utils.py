@@ -19,7 +19,7 @@ class SudokuAlgo:
 
     def get_solution(self):
         """
-        Returns the solution.
+        Returns the solution
         """
         return self.solution
 
