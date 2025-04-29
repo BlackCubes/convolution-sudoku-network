@@ -3,11 +3,11 @@ from datetime import datetime
 from pydantic import BaseModel
 
 
-class DateTimeBase:
-    created_at: datetime
-    updated_at: datetime
+class DateTimeExampleBase:
+    created_at: datetime = datetime.now()
+    updated_at: datetime = datetime.now()
 
 
-class SudokuExample(BaseModel, DateTimeBase):
+class SudokuExample(BaseModel, DateTimeExampleBase):
     steps: list[list[int]]
     length: int
