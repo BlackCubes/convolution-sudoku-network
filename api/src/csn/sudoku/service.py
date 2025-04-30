@@ -1,5 +1,5 @@
-from csn.sudoku.models import SudokuExample
-from csn.sudoku.utils import SudokuAlgo
+from .models import SudokuExample
+from .utils import SudokuAlgo
 
 
 def example() -> SudokuExample:

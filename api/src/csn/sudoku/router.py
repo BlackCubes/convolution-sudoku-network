@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from csn.sudoku.models import SudokuExample
-from csn.sudoku.service import example
+from .models import SudokuExample
+from .service import example
 
 router = APIRouter()
 
