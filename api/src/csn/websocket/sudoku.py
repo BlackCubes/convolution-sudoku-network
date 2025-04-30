@@ -1,4 +1,5 @@
 import asyncio
+import math
 
 from fastapi import APIRouter
 from fastapi import WebSocket
@@ -14,13 +15,21 @@ async def read_example(websocket: WebSocket):
 
     try:
         data = example()
+        total_steps = data["length"]
 
-        for step in data["steps"]:
+        initial_delay = 1.0
+        min_delay = 0.01
+
+        for step_index, step in enumerate(data["steps"]):
             step_data = {"row": step[0], "col": step[1], "num": step[2]}
 
             await websocket.send_json(step_data)
 
-            await asyncio.sleep(1)
+            progress = step_index / total_steps
+            current_delay = initial_delay * math.exp(-6 * progress)
+            delay = max(current_delay, min_delay)
+
+            await asyncio.sleep(delay)
 
         await websocket.send_json(
             {
