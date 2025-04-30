@@ -7,6 +7,7 @@ from fastapi import status
 from fastapi.responses import JSONResponse
 
 from csn.api import api_router
+from csn.ws import ws_router
 
 
 async def not_found(req, exec):
@@ -28,4 +29,10 @@ api = FastAPI(
 
 api.include_router(router=api_router)
 
+ws = FastAPI(root_path="/ws/v1")
+
+ws.include_router(router=ws_router)
+
 app.mount(path="/api/v1", app=api)
+
+app.mount(path="/ws/v1", app=ws)
