@@ -5,6 +5,8 @@ Main module for the convolution sudoku network API.
 from fastapi import FastAPI
 from fastapi import status
 from fastapi.responses import JSONResponse
+from slowapi import _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
 
 from .api import api_router
 from .rate_limiter import limiter
@@ -22,6 +24,7 @@ exception_handlers = {404: not_found}
 
 app = FastAPI(exception_handlers=exception_handlers, openapi_url="")
 app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 api = FastAPI(
     title="Convolution Sudoku Network",
