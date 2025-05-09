@@ -7,6 +7,7 @@ from fastapi import status
 from fastapi.responses import JSONResponse
 
 from .api import api_router
+from .rate_limiter import limiter
 from .ws import ws_router
 
 
@@ -20,6 +21,7 @@ async def not_found(req, exec):
 exception_handlers = {404: not_found}
 
 app = FastAPI(exception_handlers=exception_handlers, openapi_url="")
+app.state.limiter = limiter
 
 api = FastAPI(
     title="Convolution Sudoku Network",
