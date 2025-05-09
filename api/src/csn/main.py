@@ -7,6 +7,7 @@ from fastapi import status
 from fastapi.responses import JSONResponse
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
+from starlette.middleware.gzip import GZipMiddleware
 
 from .api import api_router
 from .rate_limiter import limiter
@@ -25,12 +26,14 @@ exception_handlers = {404: not_found}
 app = FastAPI(exception_handlers=exception_handlers, openapi_url="")
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+app.add_middleware(middleware_class=GZipMiddleware, minimum_size=1000)
 
 api = FastAPI(
     title="Convolution Sudoku Network",
     description="Welcome to the Convolution Sudoku Network API documentation!",
     root_path="/api/v1",
 )
+api.add_middleware(middleware_class=GZipMiddleware, minimum_size=1000)
 
 api.include_router(router=api_router)
 
