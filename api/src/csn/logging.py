@@ -7,10 +7,10 @@ LOG_FMT_DBG = "%(levelname)s:%(message)s:%(pathname)s:%(funcName)s:%(lineno)d"
 
 
 class LogLevels(ConvolutionSudokuNetworkEnum):
-    info = "INFO"
-    warn = "WARN"
-    error = "ERROR"
-    debug = "DEBUG"
+    INFO = "INFO"
+    WARN = "WARN"
+    ERROR = "ERROR"
+    DEBUG = "DEBUG"
 
 
 def configure_logging():
@@ -18,10 +18,10 @@ def configure_logging():
     log_levels = list(LogLevels)
 
     if log_level not in log_levels:
-        logging.basicConfig(level=LogLevels.error)
+        logging.basicConfig(level=LogLevels.ERROR)
         return
 
-    if log_level == LogLevels.debug:
+    if log_level == LogLevels.DEBUG:
         logging.basicConfig(level=log_level, format=LOG_FMT_DBG)
         return
 
